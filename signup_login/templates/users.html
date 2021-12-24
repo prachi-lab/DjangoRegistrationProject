@@ -1,0 +1,41 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+		<br>
+{% csrf_token %}
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>All Users</h5>
+				</div>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>username</th>
+							<th>email</th>
+							<th>address</th>
+							<th>DELETE</th>
+							<th>Edit Details</th>
+						</tr>
+
+						{% for i in all_user %}
+							<tr>
+								<td>{{i.username}}</td>
+								<td>{{i.email}}</td>
+								<td>{{i.address}}</td>
+								<td><a href="{% url 'delete_users' i.id %}"><img src="{% static 'img/del.png'%}"></a></td>
+								<td><a href="{% url 'edit_users' i.id %}"><img src="{% static 'img/del.png'%}"></a></td>
+
+							</tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+
+{% endblock content %}
